@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, render_to_response
 from django.http import request
 from django.contrib.auth import authenticate, login
+from django.db.models import Sum
 from .models import Nodo, Arco
 from .dijkstra import *
 
@@ -33,7 +34,7 @@ def nodos(request):
         coords = []
         nnn = list(i for i in nodos_bien)
         nnn.sort(key=lambda x: ids_nodos_bien.index(x.id))
-        print("Bien: ", nnn)
+        print(G.weights)
 
         for idx, n in enumerate(nnn[:len(nnn) - 1]):
             c = {"desde": n, "hasta": nnn[idx + 1]}
