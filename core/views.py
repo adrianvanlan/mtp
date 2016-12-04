@@ -6,5 +6,5 @@ from django.http import request
 def index(request):
 	return render_to_response("index.html", {})
 
-def perfil(request):
-	return render_to_response("perfil.html", {})
+def mapa(request):
+	return render_to_response("mapa.html", {})
