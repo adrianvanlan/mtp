@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', include('core.urls')),
 
-    url(r'^mapa/', views.mapa),
+    url(r'^core/', include('core.urls')),
 ]
