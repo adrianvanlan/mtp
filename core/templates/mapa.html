@@ -27,10 +27,10 @@
         zoom: 6
     });
 
-    {% for n in nodos|slice:":-1" %}
+    {% for n in nodos %}
         map.drawRoute({
-            origin: [],
-            destination: [],
+            origin: [{{ n.desde.latitud }}, {{ n.desde.longitud }}],
+            destination: [{{ n.hasta.latitud }}, {{ n.hasta.longitud }}],
             travelMode: 'driving',
             strokeColor: '#FF0000',
             strokeOpacity: 0.6,
