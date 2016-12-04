@@ -46,7 +46,7 @@ def dijkstra(graph, start):
             if new_path < delta[neighbor]:
                 # since it's optimal, update the shortest path for neighbor
                 delta[neighbor] = new_path
-                print(delta[neighbor])
+                #print(delta[neighbor])
                 previous[neighbor] = v
         S.add(v)
     return (delta, previous)

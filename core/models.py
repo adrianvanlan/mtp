@@ -61,4 +61,4 @@ class Arco(models.Model):
         verbose_name_plural = "Arcos"
 
     def __str__(self):
-        return self.nodo_desde.nombre + ' > ' + self.nodo_hasta.nombre + '('+str(self.costo)+' - '+str(self.tiempo)+')'
+        return "%s -> %s ($%d, %dh)" % (str(self.nodo_desde), str(self.nodo_hasta), self.costo, self.tiempo)

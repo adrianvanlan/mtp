@@ -1,4 +1,4 @@
-from dijkstra import *
+from core.dijkstra import *
 
 G = Graph()
 G.add_vertex('a')
@@ -16,5 +16,5 @@ G.add_edge('d', 'e', 4)
  
 #print(G) 
  
-#print(dijkstra(G, 'a'))
-print(shortest_path(G, 'b', 'e'))
+print(dijkstra(G, 'a'))
+#print(shortest_path(G, 'b', 'e'))
