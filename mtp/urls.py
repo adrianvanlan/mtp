@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', auth_views.login, {'template_name': 'index.html'}, name="index"),    
     url(r'^logout/$', auth_views.logout,{'template_name': 'logout.html'}, name='logout'),
+    url(r'^core/', include('core.urls')),
 ]

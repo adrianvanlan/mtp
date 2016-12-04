@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <script src="{% static "jquery.min.js" %}"></script>
+        <script src="{% static "maps.js" %}"></script>
+        <script src="{% static "gmaps.js" %}"></script>
+        <title></title>
+
+        <style>
+#map {
+    width: 100%;
+    height: 500px;
+}
+        </style>
+
+<script type="text/javascript" charset="utf-8">
+ var map;
+    $(document).ready(function(){
+      map = new GMaps({
+        div: '#map',
+        lat: -29.3802182,
+        lng: -63.4396728,
+        zoom: 6
+    });
+
+    {% for n in nodos %}
+        map.drawRoute({
+            origin: [{{ n.desde.latitud }}, {{ n.desde.longitud }}], // {{ n.desde.nombre }}
+            destination: [{{ n.hasta.latitud }}, {{ n.hasta.longitud }}], // {{ n.hasta.nombre }}
+
+            travelMode: 'driving',
+            {% if n.desde.tipo == "F" %}
+                strokeColor: '#FF0000', 
+            {% else %}
+                strokeColor: '#00FF00',
+            {% endif %}
+            strokeOpacity: 0.6,
+            strokeWeight: 6,
+            optimizeWaypoints: false,
+            optimize: false
+        });
+    {% endfor %}
+
+
+ });
+</script>
+
+    </head>
+    <body>
+        <div id="map"></div>
+        <script>
+        </script>
+
+    </body>
+</html>
+
