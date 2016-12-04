@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">    
     <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
     <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+    <link href="{% static "css/jquery.mb.YTPlayer.css" %}" media="all" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="{% static "js/jquery.mb.YTPlayer.js" %}"></script>
     <style>
     #view-source {
       position: fixed;
@@ -25,10 +29,34 @@
       margin-bottom: 40px;
       z-index: 900;
     }    
+
+    .YTPOverlay{
+        background: rgba(0,0,0,0.6)
+    }
+
+    h1.titulo {
+        font-weight: bold;
+        text-transform: uppercase;
+        width:100%;        
+        text-align: center;        
+        color:#fff;
+    }
+
+    #formLogin{
+        display: none;
+    }
+
+
+    .mdl-textfield {
+        max-width: 220px;
+        padding-right: 25px;
+        color: #000;
+    }
+
     </style>
 
     <style type="text/css">        
-        .mtp-alt-link,.mtp-image-link,.mtp-link{text-decoration:none}body{margin:0}a img{border:0}::-moz-selection{background-color:#6ab344;color:#fff}::selection{background-color:#6ab344;color:#fff}.mtp-search-box .mdl-textfield__input{color:rgba(0,0,0,.87)}.mtp-header .mdl-menu__container{z-index:50;margin:0!important}.mdl-textfield--expandable{width:auto}.mtp-fab{position:absolute;right:20%;bottom:-26px;z-index:3;background:#64ffda!important;color:#000!important}.mtp-mobile-title{display:none!important}.mtp-logo-image{height:28px;width:140px}.mtp-header{overflow:visible;background-color:#fff}.mtp-header .material-icons{color:#767777!important}.mtp-header .mdl-layout__drawer-button{background:0 0;color:#767777}.mtp-header .mdl-navigation__link{color:#757575;font-weight:700;font-size:14px}.mtp-navigation-container{direction:rtl;order:1;width:500px;transition:opacity .2s cubic-bezier(.4,0,.2,1),width .2s cubic-bezier(.4,0,.2,1)}.mtp-navigation{direction:ltr;justify-content:flex-end;width:800px}.mtp-search-box.is-focused+.mtp-navigation-container{opacity:0;width:100px}.mtp-navigation .mdl-navigation__link{display:inline-block;height:60px;line-height:68px;background-color:transparent!important;border-bottom:4px solid transparent}.mtp-navigation .mdl-navigation__link:hover{border-bottom:4px solid #8bc34a}.mtp-search-box{order:2;margin-left:16px;margin-right:16px}.mtp-more-button{order:3}.mtp-drawer{border-right:none}.mtp-drawer-separator{height:1px;background-color:#dcdcdc;margin:8px 0}.mtp-drawer .mdl-navigation__link.mdl-navigation__link{font-size:14px;color:#757575}.mtp-drawer span.mdl-navigation__link.mdl-navigation__link{color:#8bc34a}.mtp-drawer .mdl-layout-title{position:relative;background:#6ab344;height:160px}.mtp-drawer .mtp-logo-image{position:absolute;bottom:16px}.mtp-be-together-section{position:relative;height:800px;width:auto;background:url({% static "images/slide01.jpg" %}) center 30% no-repeat;background-size:cover}.logo-font{font-family:Roboto,Helvetica,Arial,sans-serif;line-height:1;color:#767777;font-weight:500}.mtp-slogan{font-size:60px;padding-top:160px}.mtp-sub-slogan{font-size:21px;padding-top:24px}.mtp-create-character{font-size:21px;padding-top:400px}.mtp-create-character a{text-decoration:none;color:#767777;font-weight:300}.mtp-screen-section{position:relative;padding-top:60px;padding-bottom:80px}.mtp-screens{text-align:right;width:100%;white-space:nowrap;overflow-x:auto}.mtp-screen,.mtp-wear-band{text-align:center}.mtp-screen .mtp-link{margin-top:16px;display:block;z-index:2}.mtp-phone,.mtp-tablet,.mtp-wear{display:inline-block}.mtp-wear{width:160px;margin-right:32px}.mtp-wear .mtp-screen-image{width:40%;z-index:1}.mtp-phone{width:64px;margin-right:48px}.mtp-phone .mtp-screen-image{width:100%;z-index:1}.mtp-tablet{width:110px;margin-right:64px}.mtp-tablet .mtp-screen-image{width:100%;z-index:1}.mtp-tablet .mtp-link{display:block;z-index:2}.mtp-auto,.mtp-tv{display:inline-block}.mtp-tv{width:300px;margin-right:80px}.mtp-tv .mtp-screen-image{width:100%;z-index:1}.mtp-auto{width:300px;overflow:hidden}.mtp-auto .mtp-screen-image{display:block;height:300px;z-index:1}.mtp-wear-section{position:relative;background:url({% static "images/wear.png" %}) center top no-repeat;background-size:cover;height:800px}.mtp-wear-band{position:absolute;bottom:0;width:100%;background-color:#37474f}.mtp-wear-band-text{max-width:800px;margin-left:25%;padding:24px;text-align:left;color:#fff}.mtp-wear-band-text p{padding-top:8px}.mtp-link{color:#8bc34a!important}.mtp-link:hover{color:#7cb342!important}.mtp-link .material-icons{position:relative;top:-1px;vertical-align:middle}.mtp-alt-link{color:#64ffda!important;font-size:16px}.mtp-alt-link:hover{color:#00bfa5!important}.mtp-alt-link .material-icons{position:relative;top:6px}.mtp-customized-section{text-align:center}.mtp-customized-section-text{max-width:500px;margin-left:auto;margin-right:auto;padding:80px 16px 0}.mtp-customized-section-text p{padding-top:16px}.mtp-customized-section-image{background:url(images/devices.jpg) center top no-repeat;background-size:cover;height:400px}.mtp-more-section{padding:80px 0;max-width:1044px;margin-left:auto;margin-right:auto}.mtp-more-section .mtp-section-title{margin-left:12px;padding-bottom:24px}.mtp-card-container .mdl-card__media{overflow:hidden;background:0 0}.mtp-card-container .mdl-card__media img{width:100%}.mtp-card-container .mdl-card__title{background:0 0;height:auto}.mtp-card-container .mdl-card__title-text{color:#000;height:auto}.mtp-card-container .mdl-card__supporting-text{height:auto;color:#000;padding-bottom:56px}.mtp-card-container .mdl-card__actions{position:absolute;bottom:0}.mtp-footer,.mtp-footer .mdl-mega-footer--bottom-section{position:relative}.mtp-card-container .mdl-card__actions a{border-top:none;font-size:16px}.mtp-footer{background-color:#fafafa}.mtp-footer a:hover{color:#8bc34a}.mtp-footer .mdl-mega-footer--middle-section::after,.mtp-footer .mdl-mega-footer--top-section::after{border-bottom:none}.mtp-footer .mdl-mega-footer--bottom-section a{margin-right:2em}.mtp-footer .mdl-mega-footer--right-section a .material-icons{position:relative;top:6px}.mtp-link-menu:hover{cursor:pointer}@media (max-width:900px){.mtp-navigation-container{display:none}.mtp-title{display:none!important}.mtp-mobile-title{display:block!important;position:absolute;left:calc(50% - 70px);top:12px;transition:opacity .2s cubic-bezier(.4,0,.2,1)}.mtp-fab,.mtp-footer .mdl-mega-footer--bottom-section,.mtp-more-button{display:none}.mtp-search-box.is-focused+.mtp-navigation-container+.mtp-mobile-title,.mtp.mtp-search-box.is-focused~.mtp-mobile-title{opacity:0}.mtp-search-box.is-focused{width:calc(100% - 48px)}.mtp-search-box .mdl-textfield__expandable-holder{width:100%}.mtp-be-together-section{height:350px}.mtp-slogan{font-size:26px;margin:0 16px;padding-top:24px}.mtp-sub-slogan{font-size:16px;margin:0 16px;padding-top:8px}.mtp-create-character{padding-top:200px;font-size:16px}.mtp-create-character img{height:12px}.mtp-wear-band-text{margin-left:0;padding:16px}}
+        .mtp-alt-link,.mtp-image-link,.mtp-link{text-decoration:none}body{margin:0}a img{border:0}::-moz-selection{background-color:rgb(63,81,181);color:#fff}::selection{background-color:rgb(63,81,181);color:#fff}.mtp-search-box .mdl-textfield__input{color:rgba(0,0,0,.87)}.mtp-header .mdl-menu__container{z-index:50;margin:0!important}.mdl-textfield--expandable{width:auto}.mtp-fab{position:absolute;right:20%;bottom:-26px;z-index:3;background:#64ffda!important;color:#000!important}.mtp-mobile-title{display:none!important}.mtp-logo-image{height:auto;width:110px}.mtp-header{overflow:visible;background-color:#fff}.mtp-header .material-icons{color:#767777!important}.mtp-header .mdl-layout__drawer-button{background:0 0;color:#767777}.mtp-header .mdl-navigation__link{color:#757575;font-weight:700;font-size:14px}.mtp-navigation-container{direction:rtl;order:1;width:500px;transition:opacity .2s cubic-bezier(.4,0,.2,1),width .2s cubic-bezier(.4,0,.2,1)}.mtp-navigation{direction:ltr;justify-content:flex-end;width:800px}.mtp-search-box.is-focused+.mtp-navigation-container{opacity:0;width:100px}.mtp-navigation .mdl-navigation__link{display:inline-block;height:60px;line-height:68px;background-color:transparent!important;border-bottom:4px solid transparent}.mtp-navigation .mdl-navigation__link:hover{border-bottom:4px solid rgb(63,81,181)}.mtp-search-box{order:2;margin-left:16px;margin-right:16px}.mtp-more-button{order:3}.mtp-drawer{border-right:none}.mtp-drawer-separator{height:1px;background-color:#dcdcdc;margin:8px 0}.mtp-drawer .mdl-navigation__link.mdl-navigation__link{font-size:14px;color:#757575}.mtp-drawer span.mdl-navigation__link.mdl-navigation__link{color:#8bc34a}.mtp-drawer .mdl-layout-title{position:relative;background:rgb(63,81,181);height:160px}.mtp-drawer .mtp-logo-image{position:absolute;bottom:16px}.mtp-be-together-section{position:relative;height:800px;width:auto;background:url({% static "images/slide01.jpg" %}) center 30% no-repeat;background-size:cover}.logo-font{font-family:Roboto,Helvetica,Arial,sans-serif;line-height:1;color:#767777;font-weight:500}.mtp-slogan{font-size:60px;padding-top:160px}.mtp-sub-slogan{font-size:21px;padding-top:24px}.mtp-create-character{font-size:21px;padding-top:400px}.mtp-create-character a{text-decoration:none;color:#767777;font-weight:300}.mtp-screen-section{position:relative;padding-top:60px;padding-bottom:80px}.mtp-screens{text-align:right;width:100%;white-space:nowrap;overflow-x:auto}.mtp-screen,.mtp-wear-band{text-align:center}.mtp-screen .mtp-link{margin-top:16px;display:block;z-index:2}.mtp-phone,.mtp-tablet,.mtp-wear{display:inline-block}.mtp-wear{width:160px;margin-right:32px}.mtp-wear .mtp-screen-image{width:40%;z-index:1}.mtp-phone{width:64px;margin-right:48px}.mtp-phone .mtp-screen-image{width:100%;z-index:1}.mtp-tablet{width:110px;margin-right:64px}.mtp-tablet .mtp-screen-image{width:100%;z-index:1}.mtp-tablet .mtp-link{display:block;z-index:2}.mtp-auto,.mtp-tv{display:inline-block}.mtp-tv{width:300px;margin-right:80px}.mtp-tv .mtp-screen-image{width:100%;z-index:1}.mtp-auto{width:300px;overflow:hidden}.mtp-auto .mtp-screen-image{display:block;height:300px;z-index:1}.mtp-wear-section{position:relative;background:url({% static "images/wear.png" %}) center top no-repeat;background-size:cover;height:800px}.mtp-wear-band{position:absolute;bottom:0;width:100%;background-color:#37474f}.mtp-wear-band-text{max-width:800px;margin-left:25%;padding:24px;text-align:left;color:#fff}.mtp-wear-band-text p{padding-top:8px}.mtp-link{color:#8bc34a!important}.mtp-link:hover{color:#7cb342!important}.mtp-link .material-icons{position:relative;top:-1px;vertical-align:middle}.mtp-alt-link{color:#64ffda!important;font-size:16px}.mtp-alt-link:hover{color:#00bfa5!important}.mtp-alt-link .material-icons{position:relative;top:6px}.mtp-customized-section{text-align:center}.mtp-customized-section-text{max-width:500px;margin-left:auto;margin-right:auto;padding:80px 16px 0}.mtp-customized-section-text p{padding-top:16px}.mtp-customized-section-image{background:url(images/devices.jpg) center top no-repeat;background-size:cover;height:400px}.mtp-more-section{padding:80px 0;max-width:1044px;margin-left:auto;margin-right:auto}.mtp-more-section .mtp-section-title{margin-left:12px;padding-bottom:24px}.mtp-card-container .mdl-card__media{overflow:hidden;background:0 0}.mtp-card-container .mdl-card__media img{width:100%}.mtp-card-container .mdl-card__title{background:0 0;height:auto}.mtp-card-container .mdl-card__title-text{color:#000;height:auto}.mtp-card-container .mdl-card__supporting-text{height:auto;color:#000;padding-bottom:56px}.mtp-card-container .mdl-card__actions{position:absolute;bottom:0}.mtp-footer,.mtp-footer .mdl-mega-footer--bottom-section{position:relative}.mtp-card-container .mdl-card__actions a{border-top:none;font-size:16px}.mtp-footer{background-color:#fafafa}.mtp-footer a:hover{color:#8bc34a}.mtp-footer .mdl-mega-footer--middle-section::after,.mtp-footer .mdl-mega-footer--top-section::after{border-bottom:none}.mtp-footer .mdl-mega-footer--bottom-section a{margin-right:2em}.mtp-footer .mdl-mega-footer--right-section a .material-icons{position:relative;top:6px}.mtp-link-menu:hover{cursor:pointer}@media (max-width:900px){.mtp-navigation-container{display:none}.mtp-title{display:none!important}.mtp-mobile-title{display:block!important;position:absolute;left:calc(50% - 70px);top:12px;transition:opacity .2s cubic-bezier(.4,0,.2,1)}.mtp-fab,.mtp-footer .mdl-mega-footer--bottom-section,.mtp-more-button{display:none}.mtp-search-box.is-focused+.mtp-navigation-container+.mtp-mobile-title,.mtp.mtp-search-box.is-focused~.mtp-mobile-title{opacity:0}.mtp-search-box.is-focused{width:calc(100% - 48px)}.mtp-search-box .mdl-textfield__expandable-holder{width:100%}.mtp-be-together-section{height:350px}.mtp-slogan{font-size:26px;margin:0 16px;padding-top:24px}.mtp-sub-slogan{font-size:16px;margin:0 16px;padding-top:8px}.mtp-create-character{padding-top:200px;font-size:16px}.mtp-create-character img{height:12px}.mtp-wear-band-text{margin-left:0;padding:16px}}
     </style>
   </head>
   <body>
@@ -37,282 +65,84 @@
       <div class="mtp-header mdl-layout__header mdl-layout__header--waterfall">
         <div class="mdl-layout__header-row">
           <span class="mtp-title mdl-layout-title">
-            <img class="mtp-logo-image" src="{% static "images/android-logo.png" %}">
+            <img class="mtp-logo-image" src="{% static "images/mtp-logo.png" %}">
           </span>
           <!-- Add spacer, to align navigation to the right in desktop -->
           <div class="mtp-header-spacer mdl-layout-spacer"></div>
-          <div class="mtp-search-box mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
-            <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
-              <i class="material-icons">search</i>
-            </label>
-            <div class="mdl-textfield__expandable-holder">
-              <input class="mdl-textfield__input" type="text" id="search-field">
-            </div>
-          </div>
           <!-- Navigation -->
           <div class="mtp-navigation-container">
-            <nav class="mtp-navigation mdl-navigation">
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Phones</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Tablets</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Wear</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">TV</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Auto</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">One</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Play</a>
+            <nav class="mtp-navigation mdl-navigation">              
+            {% if user.is_authenticated %}
+                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/login/">Hola, {{user.username}}</a>
+            {% else %}
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" id="triggerLogin">Iniciar Sesión</a>
+              {% endif %} 
+              <form id="formLogin" method="POST">
+                  
+                  {% csrf_token %}
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" name="username" id="username">
+                        <label class="mdl-textfield__label" for="sample3">Usuario</label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="password" name="password" id="password">
+                        <label class="mdl-textfield__label" for="sample3">Contraseña</label>
+                    </div>                    
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Ingresar</button>
+                  
+              </form>           
             </nav>
           </div>
           <span class="mtp-mobile-title mdl-layout-title">
-            <img class="mtp-logo-image" src="{% static "images/android-logo.png" %}">
+            <img class="mtp-logo-image" src="{% static "images/mtp-logo.png" %}">
           </span>
           <button class="mtp-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
             <i class="material-icons">more_vert</i>
-          </button>
-          <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
-            <li class="mdl-menu__item">5.0 Lollipop</li>
-            <li class="mdl-menu__item">4.4 KitKat</li>
-            <li disabled class="mdl-menu__item">4.3 Jelly Bean</li>
-            <li class="mdl-menu__item">mtp History</li>
-          </ul>
+          </button>          
+            {% if user.is_authenticated %}
+                <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
+                    <li class="mdl-menu__item"><a class="mdl-navigation__link mdl-typography--text-uppercase" href="/logout/">Salir</a></li>
+                </ul>      
+            {% endif %}            
         </div>
       </div>
 
       <div class="mtp-drawer mdl-layout__drawer">
         <span class="mdl-layout-title">
-          <img class="mtp-logo-image" src="{% static "images/android-logo-white.png" %}">
+          <img class="mtp-logo-image" src="{% static "images/mtp-logo.png" %}">
         </span>
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="">Phones</a>
-          <a class="mdl-navigation__link" href="">Tablets</a>
-          <a class="mdl-navigation__link" href="">Wear</a>
-          <a class="mdl-navigation__link" href="">TV</a>
-          <a class="mdl-navigation__link" href="">Auto</a>
-          <a class="mdl-navigation__link" href="">One</a>
-          <a class="mdl-navigation__link" href="">Play</a>
-          <div class="mtp-drawer-separator"></div>
-          <span class="mdl-navigation__link" href="">Versions</span>
-          <a class="mdl-navigation__link" href="">Lollipop 5.0</a>
-          <a class="mdl-navigation__link" href="">KitKat 4.4</a>
-          <a class="mdl-navigation__link" href="">Jelly Bean 4.3</a>
-          <a class="mdl-navigation__link" href="">mtp history</a>
-          <div class="mtp-drawer-separator"></div>
-          <span class="mdl-navigation__link" href="">Resources</span>
-          <a class="mdl-navigation__link" href="">Official blog</a>
-          <a class="mdl-navigation__link" href="">mtp on Google+</a>
-          <a class="mdl-navigation__link" href="">mtp on Twitter</a>
-          <div class="mtp-drawer-separator"></div>
-          <span class="mdl-navigation__link" href="">For developers</span>
-          <a class="mdl-navigation__link" href="">App developer resources</a>
-          <a class="mdl-navigation__link" href="">mtp Open Source Project</a>
-          <a class="mdl-navigation__link" href="">mtp SDK</a>
+          <a class="mdl-navigation__link" href="https://hackdash.org/projects/58408125afa75c0b60657606" target="blank">Proyecto</a>          
         </nav>
       </div>
 
       <div class="mtp-content mdl-layout__content">
-        <a name="top"></a>
-        <div class="mtp-be-together-section mdl-typography--text-center">
-          <div class="logo-font mtp-slogan">be together. not the same.</div>
-          <div class="logo-font mtp-sub-slogan">welcome to mtp... be yourself. do your thing. see what's going on.</div>
-          <div class="logo-font mtp-create-character">
-            <a href=""><img src="{% static "images/andy.png" %}"> create your mtp character</a>
-          </div>
+        <div id="videoWrapper" style="height:calc(100vh - 65px); background:url({% static "images/bg-home.png"%}); -webkit-filter: :brightness(60%);">
+            <div id="bgndVideo" class="player" data-property="{videoURL:'Q33SC8ldpSs',containment:'#videoWrapper', showControls:true, autoPlay:true, loop:false, mute:true, startAt:0, opacity:1, addRaster:false, quality:'highres', optimizeDisplay:true, showControls:false}">My video</div>
 
-          <a href="#screens">
-            <button class="mtp-fab mdl-button mdl-button--colored mdl-js-button mdl-button--fab mdl-js-ripple-effect">
-              <i class="material-icons">expand_more</i>
-            </button>
-          </a>
+            <div style="display:table; width:100%;">
+                <div style="display:table-cell;">
+                    
+                    <div style="width:100%;text-align:center;margin-top:30px; margin-bottom:-60px;">
+                        <svg x="0" y="0" width="300" height="300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><linearGradient x1="30" y1="115.82434" x2="30" y2="184.17566" gradientUnits="userSpaceOnUse" id="color-1"><stop offset="0" stop-color="#fff"></stop><stop offset="1" stop-color="#bdbdbd"></stop></linearGradient></defs><g fill="none" stroke="none" stroke-width="none" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="sans-serif" font-weight="normal" font-size="12" text-anchor="start" mix-blend-mode="normal"><path d="M207.17343,184.17566l0,-68.35133l62.82657,0l0,68.35133z" fill="#757575" stroke="none" stroke-width="0"></path><g data-paper-data="{&quot;elementType&quot;:&quot;logo&quot;}" fill="url(#color-1)" stroke-width="1"><g data-paper-data="{&quot;elementType&quot;:&quot;text&quot;}"><g data-paper-data="{&quot;baseline&quot;:73.2,&quot;elementType&quot;:&quot;row&quot;}"><g data-paper-data="{&quot;baselineProportion&quot;:1,&quot;fontSize&quot;:100,&quot;baseline&quot;:73.2,&quot;elementType&quot;:&quot;word&quot;}"><path d="M30,178.47972l6.30289,-56.95944l2.80128,0l16.57426,53.76909l16.26301,-53.76909l2.95691,0l6.53633,56.95944l-1.86752,0l-6.30289,-54.70285l-16.49645,54.70285l-2.10096,0l-16.8077,-54.70285l-5.99164,54.70285l-1.86752,0z" data-paper-data="{&quot;elementType&quot;:&quot;letter&quot;,&quot;baseline&quot;:73.2,&quot;baselineProportion&quot;:1,&quot;fontSize&quot;:100}"></path><path d="M86.95944,123.3878l0,-1.86752l40.30736,0l0,1.86752l-19.45336,0l0,55.09192l-1.86752,0l0,-55.09192l-18.98648,0z" data-paper-data="{&quot;elementType&quot;:&quot;letter&quot;,&quot;baseline&quot;:73.2,&quot;baselineProportion&quot;:1,&quot;fontSize&quot;:100}"></path><path d="M133.64751,178.47972l0,-56.95944l21.47651,0c1.81565,0 3.41082,0.1686 4.78553,0.50579c1.3747,0.33719 2.81425,0.99861 4.31865,1.98424c3.06066,2.07503 4.59099,6.43258 4.59099,13.07266c0,3.00879 -0.31125,5.5896 -0.93376,7.74244c-0.62251,2.15284 -1.34877,3.77395 -2.17878,4.86334c-0.83001,1.08939 -1.94534,1.9194 -3.34598,2.49003c-1.40064,0.57063 -2.58081,0.90782 -3.54051,1.01157c-0.9597,0.10375 -2.26956,0.15563 -3.92958,0.15563c-1.66002,0 -5.26538,-0.10375 -10.81607,-0.31125c-5.55069,-0.2075 -8.40385,-0.36313 -8.55948,-0.46688l0,25.91188l-1.86752,0 M135.51503,151.47846l19.60899,0c3.68317,0 6.56227,-0.97267 8.63729,-2.918c2.07503,-1.94534 3.11254,-5.64147 3.11254,-11.08842c0,-6.74383 -1.68596,-10.9717 -5.05787,-12.68359c-1.81565,-0.88189 -4.0463,-1.32283 -6.69196,-1.32283l-19.60899,0l0,28.01284z" data-paper-data="{&quot;elementType&quot;:&quot;letter&quot;,&quot;baseline&quot;:73.2,&quot;baselineProportion&quot;:1,&quot;fontSize&quot;:100}"></path></g></g></g></g><g data-paper-data="{&quot;elementType&quot;:&quot;emblem&quot;}" fill="#ffffff" stroke-width="1"><g data-paper-data="{&quot;baselineProportion&quot;:1,&quot;fontSize&quot;:100,&quot;baseline&quot;:73.2,&quot;elementType&quot;:&quot;word&quot;}"><path d="M220.07023,170.5054l4.53808,-41.0108l2.01692,0l11.93347,38.71374l11.70937,-38.71374l2.12898,0l4.70616,41.0108l-1.34462,0l-4.53808,-39.38605l-11.87744,39.38605l-1.51269,0l-12.10155,-39.38605l-4.31398,39.38605l-1.34462,0z" data-paper-data="{&quot;elementType&quot;:&quot;letter&quot;,&quot;baseline&quot;:73.2,&quot;baselineProportion&quot;:1,&quot;fontSize&quot;:100}"></path></g></g></g></svg>
+                    </div>
+                    <div style="width:100%;margin-top:-30px;text-align:center;">
+                        <h1 class="titulo">Una carga, múltiples oportunidades</h1>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="mtp-screen-section mdl-typography--text-center">
-          <a name="screens"></a>
-          <div class="mdl-typography--display-1-color-contrast">Powering screens of all sizes</div>
-          <div class="mtp-screens">
-            <div class="mtp-wear mtp-screen">
-              <a class="mtp-image-link" href="">
-                <img class="mtp-screen-image" src="{% static "images/wear-silver-on.png" %}">
-                <img class="mtp-screen-image" src="{% static "images/wear-black-on.png" %}">
-              </a>
-              <a class="mtp-link mdl-typography--font-regular mdl-typography--text-uppercase" href="">mtp Wear</a>
-            </div>
-            <div class="mtp-phone mtp-screen">
-              <a class="mtp-image-link" href="">
-                <img class="mtp-screen-image" src="{% static "images/nexus6-on.jpg" %}">
-              </a>
-              <a class="mtp-link mdl-typography--font-regular mdl-typography--text-uppercase" href="">Phones</a>
-            </div>
-            <div class="mtp-tablet mtp-screen">
-              <a class="mtp-image-link" href="">
-                <img class="mtp-screen-image" src="{% static "images/nexus9-on.jpg" %}">
-              </a>
-              <a class="mtp-link mdl-typography--font-regular mdl-typography--text-uppercase" href="">Tablets</a>
-            </div>
-            <div class="mtp-tv mtp-screen">
-              <a class="mtp-image-link" href="">
-                <img class="mtp-screen-image" src="{% static "images/tv-on.jpg" %}">
-              </a>
-              <a class="mtp-link mdl-typography--font-regular mdl-typography--text-uppercase" href="">mtp TV</a>
-            </div>
-            <div class="mtp-auto mtp-screen">
-              <a class="mtp-image-link" href="">
-                <img class="mtp-screen-image" src="{% static "images/auto-on.jpg" %}">
-              </a>
-              <a class="mtp-link mdl-typography--font-regular mdl-typography--text-uppercase mdl-typography--text-left" href="">Coming Soon: mtp Auto</a>
-            </div>
-          </div>
-        </div>
-        <div class="mtp-wear-section">
-          <div class="mtp-wear-band">
-            <div class="mtp-wear-band-text">
-              <div class="mdl-typography--display-2 mdl-typography--font-thin">The best of Google built in</div>
-              <p class="mdl-typography--headline mdl-typography--font-thin">
-                mtp works perfectly with your favourite apps like Google Maps,
-                Calendar and YouTube.
-              </p>
-              <p>
-                <a class="mdl-typography--font-regular mdl-typography--text-uppercase mtp-alt-link" href="">
-                  See what's new in the Play Store&nbsp;<i class="material-icons">chevron_right</i>
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="mtp-customized-section">
-          <div class="mtp-customized-section-text">
-            <div class="mdl-typography--font-light mdl-typography--display-1-color-contrast">Customised by you, for you</div>
-            <p class="mdl-typography--font-light">
-              Put the stuff that you care about right on your home screen: the latest news, the weather or a stream of your recent photos.
-              <br>
-              <a href="" class="mtp-link mdl-typography--font-light">Customise your phone</a>
-            </p>
-          </div>
-          <div class="mtp-customized-section-image"></div>
-        </div>
-        <div class="mtp-more-section">
-          <div class="mtp-section-title mdl-typography--display-1-color-contrast">More from mtp</div>
-          <div class="mtp-card-container mdl-grid">
-            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-              <div class="mdl-card__media">
-                <img src="{% static "images/more-from-1.png" %}">
-              </div>
-              <div class="mdl-card__title">
-                 <h4 class="mdl-card__title-text">Get going on mtp</h4>
-              </div>
-              <div class="mdl-card__supporting-text">
-                <span class="mdl-typography--font-light mdl-typography--subhead">Four tips to make your switch to mtp quick and easy</span>
-              </div>
-              <div class="mdl-card__actions">
-                 <a class="mtp-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
-                   Make the switch
-                   <i class="material-icons">chevron_right</i>
-                 </a>
-              </div>
-            </div>
-
-            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-              <div class="mdl-card__media">
-                <img src="{% static "images/more-from-4.png" %}">
-              </div>
-              <div class="mdl-card__title">
-                 <h4 class="mdl-card__title-text">Create your own mtp character</h4>
-              </div>
-              <div class="mdl-card__supporting-text">
-                <span class="mdl-typography--font-light mdl-typography--subhead">Turn the little green mtp mascot into you, your friends, anyone!</span>
-              </div>
-              <div class="mdl-card__actions">
-                 <a class="mtp-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
-                   mtpify.com
-                   <i class="material-icons">chevron_right</i>
-                 </a>
-              </div>
-            </div>
-
-            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-              <div class="mdl-card__media">
-                <img src="{% static "images/more-from-2.png" %}">
-              </div>
-              <div class="mdl-card__title">
-                 <h4 class="mdl-card__title-text">Get a clean customisable home screen</h4>
-              </div>
-              <div class="mdl-card__supporting-text">
-                <span class="mdl-typography--font-light mdl-typography--subhead">A clean, simple, customisable home screen that comes with the power of Google Now: Traffic alerts, weather and much more, just a swipe away.</span>
-              </div>
-              <div class="mdl-card__actions">
-                 <a class="mtp-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
-                   Download now
-                   <i class="material-icons">chevron_right</i>
-                 </a>
-              </div>
-            </div>
-
-            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-              <div class="mdl-card__media">
-                <img src="{% static "images/more-from-3.png" %}">
-              </div>
-              <div class="mdl-card__title">
-                 <h4 class="mdl-card__title-text">Millions to choose from</h4>
-              </div>
-              <div class="mdl-card__supporting-text">
-                <span class="mdl-typography--font-light mdl-typography--subhead">Hail a taxi, find a recipe, run through a temple – Google Play has all the apps and games that let you make your mtp device uniquely yours.</span>
-              </div>
-              <div class="mdl-card__actions">
-                 <a class="mtp-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
-                   Find apps
-                   <i class="material-icons">chevron_right</i>
-                 </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <footer class="mtp-footer mdl-mega-footer">
-          <div class="mdl-mega-footer--top-section">
-            <div class="mdl-mega-footer--left-section">
-              <button class="mdl-mega-footer--social-btn"></button>
-              &nbsp;
-              <button class="mdl-mega-footer--social-btn"></button>
-              &nbsp;
-              <button class="mdl-mega-footer--social-btn"></button>
-            </div>
-            <div class="mdl-mega-footer--right-section">
-              <a class="mdl-typography--font-light" href="#top">
-                Back to Top
-                <i class="material-icons">expand_less</i>
-              </a>
-            </div>
-          </div>
-
-          <div class="mdl-mega-footer--middle-section">
-            <p class="mdl-typography--font-light">Satellite imagery: © 2014 Astrium, DigitalGlobe</p>
-            <p class="mdl-typography--font-light">Some features and devices may not be available in all areas</p>
-          </div>
-
-          <div class="mdl-mega-footer--bottom-section">
-            <a class="mtp-link mtp-link-menu mdl-typography--font-light" id="version-dropdown">
-              Versions
-              <i class="material-icons">arrow_drop_up</i>
-            </a>
-            <ul class="mdl-menu mdl-js-menu mdl-menu--top-left mdl-js-ripple-effect" for="version-dropdown">
-              <li class="mdl-menu__item">5.0 Lollipop</li>
-              <li class="mdl-menu__item">4.4 KitKat</li>
-              <li class="mdl-menu__item">4.3 Jelly Bean</li>
-              <li class="mdl-menu__item">mtp History</li>
-            </ul>
-            <a class="mtp-link mtp-link-menu mdl-typography--font-light" id="developers-dropdown">
-              For Developers
-              <i class="material-icons">arrow_drop_up</i>
-            </a>
-            <ul class="mdl-menu mdl-js-menu mdl-menu--top-left mdl-js-ripple-effect" for="developers-dropdown">
-              <li class="mdl-menu__item">App developer resources</li>
-              <li class="mdl-menu__item">mtp Open Source Project</li>
-              <li class="mdl-menu__item">mtp SDK</li>
-              <li class="mdl-menu__item">mtp for Work</li>
-            </ul>
-            <a class="mtp-link mdl-typography--font-light" href="">Blog</a>
-            <a class="mtp-link mdl-typography--font-light" href="">Privacy Policy</a>
-          </div>
-
-        </footer>
       </div>
-    </div>
-    <a href="https://github.com/google/material-design-lite/blob/mdl-1.x/templates/mtp-dot-com/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">View Source</a>    
+    </div>    
+    <script type="text/javascript">
+        myPlayer = $("#bgndVideo").YTPlayer({align:"center,left"});
+        $("#triggerLogin").on("click", function(){ 
+            $("#more-button").fadeOut(100);
+            $(this).fadeOut(200, function(){
+                $("#formLogin").fadeIn(300);
+            });
+        })
+    </script> 
   </body>
 </html>
