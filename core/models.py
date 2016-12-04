@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 TIPOS_NODO = (
     ("L", "Localidad"),
@@ -6,6 +7,21 @@ TIPOS_NODO = (
     ("A", "Aeropuerto"),
     ("S", "Silos"),
     ("P", "Puerto"))
+
+
+TIPOS_PERFIL = (
+    ("P", "Productor"),
+    ("T", "Transportista")
+)
+
+
+class Perfil(models.Model):
+
+    usuario = models.OneToOneField(
+        User,
+        unique=True
+    )
+    tipo = models.CharField(max_length=1, choices=TIPOS_PERFIL)
 
 
 class Nodo(models.Model):
