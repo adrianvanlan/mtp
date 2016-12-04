@@ -29,12 +29,19 @@
 
     {% for n in nodos %}
         map.drawRoute({
-            origin: [{{ n.desde.latitud }}, {{ n.desde.longitud }}],
-            destination: [{{ n.hasta.latitud }}, {{ n.hasta.longitud }}],
+            origin: [{{ n.desde.latitud }}, {{ n.desde.longitud }}], // {{ n.desde.nombre }}
+            destination: [{{ n.hasta.latitud }}, {{ n.hasta.longitud }}], // {{ n.hasta.nombre }}
+
             travelMode: 'driving',
-            strokeColor: '#FF0000',
+            {% if n.desde.tipo == "F" %}
+                strokeColor: '#FF0000', 
+            {% else %}
+                strokeColor: '#00FF00',
+            {% endif %}
             strokeOpacity: 0.6,
-            strokeWeight: 6
+            strokeWeight: 6,
+            optimizeWaypoints: false,
+            optimize: false
         });
     {% endfor %}
 

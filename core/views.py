@@ -32,8 +32,12 @@ def nodos(request):
     ids_nodos_bien = shortest_path(G, 1, 7)
     nodos_bien = Nodo.objects.filter(id__in=ids_nodos_bien)
 
+    print(nodos_bien)
     coords = []
     nnn = list(i for i in nodos_bien)
+    nnn.sort(key=lambda x: ids_nodos_bien.index(x.id))
+    print("Bien: ", nnn)
+
     for idx, n in enumerate(nnn[:len(nnn)-1]):
         c = {"desde": n, "hasta": nnn[idx+1]}
         coords.append(c)
