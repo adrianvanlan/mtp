@@ -2,10 +2,8 @@ from django.shortcuts import render, redirect, render_to_response
 from django.http import request
 from django.contrib.auth import authenticate, login
 
-
 def index(request):
     return render_to_response("index.html", {})
-
 
 def login(request):
     username = request.POST['username']
@@ -18,8 +16,5 @@ def login(request):
         render_to_response("index.html", {})
         # Return an 'invalid login' error message.
 
-
-
 def logout_view(request):
     logout(request)
-    # Redirect to a success page.

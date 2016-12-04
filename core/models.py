@@ -27,8 +27,8 @@ class Perfil(models.Model):
 class Nodo(models.Model):
 
     nombre = models.CharField(max_length=50)
-    latitud = models.CharField(max_length=20)
-    longitud = models.CharField(max_length=20)
+    latitud = models.FloatField()
+    longitud = models.FloatField()
     tipo = models.CharField(max_length=1, choices=TIPOS_NODO)
 
     class Meta:
@@ -36,7 +36,7 @@ class Nodo(models.Model):
         verbose_name_plural = "Nodos"
 
     def __str__(self):
-        pass
+        return self.nombre
 
 
 class Arco(models.Model):
@@ -61,4 +61,4 @@ class Arco(models.Model):
         verbose_name_plural = "Arcos"
 
     def __str__(self):
-        pass
+        return "Arco"
