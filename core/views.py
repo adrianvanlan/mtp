@@ -21,4 +21,4 @@ def logout_view(request):
 
 
 def mapa(request):
-    render_to_response("mapa.html", {})
+    return render_to_response("mapa.html", {})
