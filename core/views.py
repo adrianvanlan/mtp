@@ -28,10 +28,20 @@ def nodos(request):
         G.add_vertex(nodo.id)
     arcos = Arco.objects.all()
     for arco in arcos:
-        G.add_edge(arco.nodo_desde.id, arco.nodo_hasta.id, arco.costo)
+        G.add_edge(arco.nodo_desde.id, arco.nodo_hasta.id, arco.tiempo)
     ids_nodos_bien = shortest_path(G, 1, 7)
-    nodos_bien = Nodo.objects.filter(id__in=ids_nodos_bien)
+    print(ids_nodos_bien)
+    nodos_bien = Nodo.objects.filter(id__in=ids_nodos_bien).order_by('-id')
+    print(nodos_bien)
+    d = dict((i,None) for i in ids_nodos_bien)
+    for n in nodos_bien:
+        d[n.id] = n
+    print(d)
+    desde = nodos_bien[0]
+    hasta = nodos_bien[len(nodos_bien)-1]
+    nodos_bien.exclude(id=desde.id)
+    nodos_bien.exclude(id=hasta.id)
     return render_to_response(
         "nodos.html",
-        {"nodos": nodos_bien}
+        {"nodos": nodos_bien, "desde": desde, "hasta": hasta, "waypts": nodos_bien}
     )

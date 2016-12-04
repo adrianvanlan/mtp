@@ -40,13 +40,13 @@ def dijkstra(graph, start):
     # while there exists a vertex v not in S
     while S != graph.vertices:
         v = min((set(delta.keys()) - S), key=delta.get)
-
         # for each neighbor of v not in S
         for neighbor in set(graph.edges[v]) - S:
             new_path = delta[v] + graph.weights[v, neighbor]
             if new_path < delta[neighbor]:
                 # since it's optimal, update the shortest path for neighbor
                 delta[neighbor] = new_path
+                print(delta[neighbor])
                 previous[neighbor] = v
         S.add(v)
     return (delta, previous)
