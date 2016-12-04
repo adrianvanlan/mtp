@@ -16,7 +16,8 @@ class Graph:
         self.vertices.add(value)
 
     def add_edge(self, from_vertex, to_vertex, distance):
-        if from_vertex == to_vertex: pass  # no cycles allowed
+        if from_vertex == to_vertex:
+            pass  # no cycles allowed
         self.edges[from_vertex].append(to_vertex)
         self.weights[(from_vertex, to_vertex)] = distance
 
@@ -26,11 +27,10 @@ class Graph:
         string += "Weights: " + str(self.weights)
         return string
 
+
 def dijkstra(graph, start):
     # initializations
     S = set()
-    ''' delta represents the length shortest distance paths from start -> v, for v in delta. 
-    We initialize it so that every vertex has a path of infinity (this line will break if you run python 2'''
     delta = dict.fromkeys(list(graph.vertices), math.inf)
     previous = dict.fromkeys(list(graph.vertices), None)
 
@@ -39,23 +39,18 @@ def dijkstra(graph, start):
 
     # while there exists a vertex v not in S
     while S != graph.vertices:
-      # let v be the closest vertex that has not been visited...it will begin at 'start'
-      v = min((set(delta.keys()) - S), key=delta.get)
+        v = min((set(delta.keys()) - S), key=delta.get)
 
-      # for each neighbor of v not in S
-      for neighbor in set(graph.edges[v]) - S:
-        new_path = delta[v] + graph.weights[v,neighbor]
-
-        # is the new path from neighbor through 
-        if new_path < delta[neighbor]:
-          # since it's optimal, update the shortest path for neighbor
-          delta[neighbor] = new_path
-
-          # set the previous vertex of neighbor to v
-          previous[neighbor] = v
-      S.add(v)
-  		
+        # for each neighbor of v not in S
+        for neighbor in set(graph.edges[v]) - S:
+            new_path = delta[v] + graph.weights[v, neighbor]
+            if new_path < delta[neighbor]:
+                # since it's optimal, update the shortest path for neighbor
+                delta[neighbor] = new_path
+                previous[neighbor] = v
+        S.add(v)
     return (delta, previous)
+
 
 def shortest_path(graph, start, end):
     delta, previous = dijkstra(graph, start)
